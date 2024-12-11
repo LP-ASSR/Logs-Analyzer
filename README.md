@@ -2,7 +2,6 @@
 
 Ce projet a pour objectif d'analyser les logs Apache à l'aide d'une interface web en HTML/CSS, avec un backend en JavaScript utilisant le framework Express.js. Ce projet a été réalisé dans le cadre du module **Cycle de vie informatique** de notre formation en **Licence Professionnelle ASSR**.
 
-
 <p>
     <img src="https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB" alt="version">
     <img src="https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white" alt="version">
@@ -27,8 +26,6 @@ L'application permet :
     - Les codes de réponse HTTP les plus courants.
     - Les périodes de trafic les plus élevées.
 - L'affichage des résultats sous forme de tableaux et graphiques dynamiques.
-
-Le backend est développé en **JavaScript** avec **Express.js** pour gérer les requêtes HTTP et traiter les fichiers de logs. Le frontend est conçu avec **HTML/CSS** pour une interface utilisateur ergonomique et intuitive.
 
 ## Installation et Utilisation
 

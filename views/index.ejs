@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>analyseur de logs</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="21.png" alt="logo apache">
+        </div>
+        <h1>analyseur de logs php</h1>
+    </header>
+
+    <nav class="menu">
+        <a href="page2.html" class="bouton">page 2</a>
+        <a href="page3.html" class="bouton">page 3</a>
+        <a href="#upload" class="bouton">import logs</a>
+        <a href="#tableau" class="bouton">statistiques</a>
+    </nav>
+
+    <main>
+        <section id="upload">
+            <h2>importez vos fichiers logs</h2>
+            <form action="/votre_script_de_traitement" method="post" enctype="multipart/form-data">
+                <label for="fichier">choisissez un fichier :</label>
+                <input type="file" id="fichier" name="fichier">
+                <button type="submit">envoyer</button>
+            </form>
+        </section>
+
+        <section id="tableau">
+            <h2>tableau des logs</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>navigateur</th>
+                        <th>ip</th>
+                        <th>type de requête</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>opera</td>
+                        <td>192.168.1.10</td>
+                        <td>get</td>
+                    </tr>
+                    <tr>
+                        <td>mozilla</td>
+                        <td>192.168.1.100</td>
+                        <td>post</td>
+                    </tr>
+                    <tr>
+                        <td>chrome</td>
+                        <td>192.168.1.104</td>
+                        <td>get</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <footer>
+        <p>copyright - martin mathéo, monilari alain, erwann couet, jonathan guthman</p>
+    </footer>
+</body>
+</html>

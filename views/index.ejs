@@ -27,36 +27,25 @@
             <form action="/votre_script_de_traitement" method="post" enctype="multipart/form-data">
                 <label for="fichier">choisissez un fichier :</label>
                 <input type="file" id="fichier" name="fichier">
-                <button type="submit">envoyer</button>
+                <button type="submit" id="send">envoyer</button>
             </form>
         </section>
 
         <section id="tableau">
+            <p class="test" id="test"></p>
             <h2>tableau des logs</h2>
-            <table>
+            <table id="tableauresult">
                 <thead>
                     <tr>
-                        <th>navigateur</th>
-                        <th>ip</th>
-                        <th>type de requête</th>
+                        <th>Adresse IP</th>
+                        <th>Timestamp</th>
+                        <th>Type de requête</th>
+                        <th>Chemin d'accès</th>
+                        <th>HTTP Code</th>
+                        <th>Taille de la requête</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>opera</td>
-                        <td>192.168.1.10</td>
-                        <td>get</td>
-                    </tr>
-                    <tr>
-                        <td>mozilla</td>
-                        <td>192.168.1.100</td>
-                        <td>post</td>
-                    </tr>
-                    <tr>
-                        <td>chrome</td>
-                        <td>192.168.1.104</td>
-                        <td>get</td>
-                    </tr>
                 </tbody>
             </table>
         </section>
@@ -67,3 +56,53 @@
     </footer>
 </body>
 </html>
+<script>
+document.getElementById('send').addEventListener('click', (event) => {
+    event.preventDefault();
+
+    const fileInput = document.getElementById('fichier');
+    const regexInput = '(?<ip>\\d{1,3}(?:\\.\\d{1,3}){3}) - - \\[(?<date>[\\w:/]+ \\+\\d{4})\\] "(?<method>\\w+) (?<path>[^"]+) HTTP/\\d\\.\\d" (?<status>\\d{3}) (?<size>\\d+)';
+    const resultsTableBody = document.getElementById('tableauresult').querySelector('tbody');
+
+    resultsTableBody.innerHTML = '';
+
+    if (!fileInput.files.length) {
+        alert('Veuillez sélectionner un fichier.');
+        return;
+    }
+
+    const file = fileInput.files[0];
+    const regex = new RegExp(regexInput, 'g');
+
+    const reader = new FileReader();
+    reader.onload = () => {
+        const content = reader.result;
+        const matches = [...content.matchAll(regex)];
+
+        if (matches.length) {
+            matches.forEach((match) => {
+                const row = document.createElement('tr');
+                ['ip', 'date', 'method', 'path', 'status', 'size'].forEach((group) => {
+                    const cell = document.createElement('td');
+                    cell.textContent = match.groups[group];
+                    row.appendChild(cell);
+                });
+                resultsTableBody.appendChild(row);
+            });
+        } else {
+            const row = document.createElement('tr');
+            const cell = document.createElement('td');
+            cell.textContent = 'Aucune correspondance trouvée.';
+            cell.colSpan = 6;
+            row.appendChild(cell);
+            resultsTableBody.appendChild(row);
+        }
+    };
+
+    reader.onerror = () => {
+        alert('Erreur lors de la lecture du fichier.');
+    };
+
+    reader.readAsText(file);
+});
+</script>

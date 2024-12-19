@@ -1,7 +1,8 @@
 const express = require('express');
 const morgan = require('morgan');
 const moment = require('moment-timezone');
-const bodyParser = require('body-parser')
+const bodyParser = require('body-parser');
+const dotenv = require('dotenv');
 const router = require('./router').router;
 
 const server = express();

@@ -21,6 +21,7 @@ server.use(function (req, res, next) {
     res.redirect('/');
 });
 
-server.listen(80, function () {
-    console.log('Server listing on port 80.');
+const PORT = process.env.PORT || 80;
+server.listen(PORT, function () {
+    console.log(`Server listing on port ${PORT}.`);
 });
